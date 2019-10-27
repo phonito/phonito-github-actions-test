@@ -18,8 +18,8 @@ jobs:
         npm test
     - name: Docker Vulnerability Scan With Phonito Security
       uses: phonito/phonito-scanner-action@v1.0.0
-       with:
-          image: ubuntu-latest
-          phonito-token: ${{ secrets.PHONITO_TOKEN }}
-          fail-level: CRITICAL
+      with:
+        image: ubuntu-latest
+        phonito-token: ${{ secrets.PHONITO_TOKEN }}
+        fail-level: CRITICAL
 
