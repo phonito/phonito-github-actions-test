@@ -9,8 +9,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: test
-      run: npm test
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: install and test
+      run: |
+        npm install
+        npm test
     # - name: Docker Vulnerability Scan With Phonito Security
     #   uses: phonito/phonito-scanner-action@v1.0.0
     #    with:
