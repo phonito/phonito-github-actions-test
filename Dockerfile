@@ -1,2 +1,5 @@
-# Container image that runs your code
-FROM alpine:3.10
+  
+FROM node:12-alpine
+
+RUN mkdir /src
+COPY src /src
