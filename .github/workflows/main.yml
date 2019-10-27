@@ -27,7 +27,7 @@ jobs:
       run: docker build . --file Dockerfile --tag myapp:${{ steps.vars.outputs.docker_tag }}
 
     - name: Docker Vulnerability Scan With Phonito Security
-      uses: phonito/phonito-scanner-action@v1.0.0
+      uses: phonito/phonito-scanner-action@master
       with:
         image: myapp:${{ steps.vars.outputs.docker_tag }}
         phonito-token: ${{ secrets.PHONITO_TOKEN }}
