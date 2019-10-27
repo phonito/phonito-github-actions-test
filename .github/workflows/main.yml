@@ -31,5 +31,5 @@ jobs:
       with:
         image: myapp:${{ steps.vars.outputs.docker_tag }}
         phonito-token: ${{ secrets.PHONITO_TOKEN }}
-        fail-level: CRITICAL
+        fail-level: LOW
 
