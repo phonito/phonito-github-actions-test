@@ -9,17 +9,27 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
     - uses: actions/setup-node@v1
       with:
         node-version: '10.x'
+    
     - name: install and test
       run: |
         npm install
         npm test
+      
+    - name: Set tag var
+      id: vars
+      run: echo ::set-output name=docker_tag::$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag myapp:${{ steps.vars.outputs.docker_tag }}
+
     - name: Docker Vulnerability Scan With Phonito Security
       uses: phonito/phonito-scanner-action@v1.0.0
       with:
-        image: ubuntu-latest
+        image: myapp:${{ steps.vars.outputs.docker_tag }}
         phonito-token: ${{ secrets.PHONITO_TOKEN }}
         fail-level: CRITICAL
 
